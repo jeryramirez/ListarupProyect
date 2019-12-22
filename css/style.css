@@ -15,19 +15,19 @@
     text-align: center;
 }
 .menu{
-    background: #4D7CFF;
+    background: #007bFF;
 }
 .menu a{
     color: #fff;
-}
-.menu div{
-
 }
 .btn-priority{
     height: 10px;
 }
 .hight{
     border-left:solid 3px brown;
+}
+.middle{
+    border-left:solid 3px orange;
 }
 .low{
     border-left:solid 3px green;
@@ -39,8 +39,16 @@
     font-size: 0.9em;
 }
 footer{
-    background: #4D7CFF;
+    background: #007bFF;
     text-align: center;
     color: #fff;
     font-size: 0.8em;
+}
+
+.ventana:hover{
+    background: #0056b3;
+}
+
+.ventana{
+    border-radius: 0;
 }
