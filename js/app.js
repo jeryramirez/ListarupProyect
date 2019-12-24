@@ -16,21 +16,37 @@ Las Clases independientes se utilizan para:
 - Crear Funciones para procesar sus datos
 */
 
+
+//IMPORTACIONES
 import { CTask } from './CTask.js';
 import { CInterfaz } from './CInterfaz.js';
 
-const Task = new CTask("Ir al Super", "comprar pan y leche", 0);
+//INSTANCIACION DE OBJETOS
 const Interfaz = new CInterfaz();
-const formulario = document.querySelector('#formulario');
 
+//CAPTURA DE EVENTOS
+const formulario = document.querySelector('#formulario');
+const list = document.querySelector('#lista');
+
+//EVENTOS
 formulario.addEventListener('submit', addTask);
-    
+list.addEventListener('click', deleteTask);
+
+//PROGRAMACION
 function addTask(e){
     e.preventDefault();
 
-    Task.title = document.querySelector('#title').value;
-    Task.message = document.querySelector('#message').value;
-    Task.priority = document.querySelector('input[name="priority"]:checked').id;
+    const title = document.querySelector('#title').value;
+    const message = document.querySelector('#message').value;
+    const priority = document.querySelector('input[name="priority"]:checked').id;
+    Interfaz.mostrarTask(title, message, priority);
+}
 
-    Interfaz.mostrarTask(Task.title, Task.message, Task.priority);
+function deleteTask(e) {
+    e.preventDefault();
+    const element = e.target;
+    if (element.id == 'delete') {
+        Interfaz.eliminarTask(element);
+    }
+    
 }

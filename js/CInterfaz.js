@@ -10,13 +10,17 @@ export class CInterfaz{
             <h5 class="card-title">${title}</h5>
             <p class="card-link my-0">${message}</p>
             <div class="enlaces enlaces mr-2">
-                <a href="" class="card-link">editar</a>
-                <a href="" class="card-link">comentar</a>
-                <a href="" class="card-link">eliminar</a>
+                <a href="#" class="card-link">editar</a>
+                <a href="#" class="card-link">comentar</a>
+                <a href="#" id="delete" class="card-link">eliminar</a>
             </div>
         </div>
         `;
         lista.appendChild(card);
+    }
+
+    eliminarTask(element) {
+        element.parentElement.parentElement.parentElement.remove();
     }
 }
 
