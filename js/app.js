@@ -22,6 +22,7 @@ import { CTask } from './CTask.js';
 import { CInterfaz } from './CInterfaz.js';
 
 //INSTANCIACION DE OBJETOS
+
 const Interfaz = new CInterfaz();
 
 //CAPTURA DE EVENTOS
@@ -38,8 +39,17 @@ function addTask(e){
 
     const title = document.querySelector('#title').value;
     const message = document.querySelector('#message').value;
-    const priority = document.querySelector('input[name="priority"]:checked').id;
-    Interfaz.mostrarTask(title, message, priority);
+    const priority = document.querySelector('input[name="priority"]:checked');
+
+    if (title === '' || message === '' || priority === null) {
+
+        Interfaz.camposVacios();
+
+    } else {
+
+        const Task = new CTask(title, message, priority.id);
+        Task.put();
+    }
 }
 
 function deleteTask(e) {
@@ -48,5 +58,4 @@ function deleteTask(e) {
     if (element.id == 'delete') {
         Interfaz.eliminarTask(element);
     }
-    
 }

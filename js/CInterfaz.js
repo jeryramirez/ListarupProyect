@@ -22,5 +22,19 @@ export class CInterfaz{
     eliminarTask(element) {
         element.parentElement.parentElement.parentElement.remove();
     }
+
+    camposVacios() {
+        const div = document.querySelector('#alert');
+        const alert = document.createElement('div');
+        alert.classList = 'alert alert-danger';
+        alert.innerHTML = `
+        complete todos los campos y asigne un nivel de prioridad
+        `;
+        div.appendChild(alert);
+        setTimeout(() => {
+            alert.remove();
+        }, 3000);
+
+    }
 }
 
