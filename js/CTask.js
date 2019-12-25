@@ -1,4 +1,4 @@
-
+import { CTaskLS } from "./CTaskLS.js";
 
 export class CTask {
     constructor(title, message, level) {
@@ -11,22 +11,14 @@ export class CTask {
             "level": this.level
         }
     }
-    //Es recomendable escribir esta parte del codigo en una clase aparte especial para los almacenamientos en DB
+
+    TaskLS = new CTaskLS(this.task);
+
     put() {
-        let note;
-        note = this.get();
-        note.push(this.task);
-        localStorage.setItem('notes', JSON.stringify(note));
-        console.log(JSON.parse(localStorage.getItem('notes')));
+        this.TaskLS.put();
     }
 
     get() {
-        let note;
-        if (localStorage.getItem('notes') === null) {
-            note = [];
-        } else {
-            note = JSON.parse(localStorage.getItem('notes'));
-        }
-        return note;
+        this.TaskLS.get();
     }
 }
