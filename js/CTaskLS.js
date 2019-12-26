@@ -1,13 +1,14 @@
 
 
 export class CTaskLS{
-
+    constructor(task) {
+        this.task = task;
+    }
     put() {
         let note;
         note = this.get();
         note.push(this.task);
         localStorage.setItem('notes', JSON.stringify(note));
-        console.log(JSON.parse(localStorage.getItem('notes')));
     }
 
     get() {

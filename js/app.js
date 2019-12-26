@@ -16,47 +16,49 @@ Las Clases independientes se utilizan para:
 - Crear Funciones para procesar sus datos
 */
 
-
 //IMPORTACIONES
 import { CTask } from './CTask.js';
 import { CInterfaz } from './CInterfaz.js';
 
-//INSTANCIACION DE OBJETOS
-
 const Interfaz = new CInterfaz();
 
-//CAPTURA DE EVENTOS
-const formulario = document.querySelector('#formulario');
-const list = document.querySelector('#lista');
-
-//EVENTOS
-formulario.addEventListener('submit', addTask);
-list.addEventListener('click', deleteTask);
+//const list = document.querySelector('#lista');
 
 //PROGRAMACION
+document.querySelector('#formulario').addEventListener('submit', addTask);
+document.addEventListener('DOMContentLoaded', Interfaz.show)
+
+
+
 function addTask(e){
     e.preventDefault();
 
     const title = document.querySelector('#title').value;
     const message = document.querySelector('#message').value;
-    const priority = document.querySelector('input[name="priority"]:checked');
+    let priority = document.querySelector('input[name="priority"]:checked');
+    priority = priority != undefined ? priority.id : undefined;
 
-    if (title === '' || message === '' || priority === null) {
+    const Task = new CTask(title, message, priority);
 
-        Interfaz.camposVacios();
+    if (Task.title === '' || Task.message === '' || Task.priority === undefined) {
+
+        Interfaz.validarCampos();
         
-
     } else {
-
-        const Task = new CTask(title, message, priority.id);
+        
         Task.put();
+
+        document.querySelector('#title').value = '';
+        document.querySelector('#message').value = '';
     }
+
 }
 
-function deleteTask(e) {
+
+/*function deleteTask(e) {
     e.preventDefault();
     const element = e.target;
     if (element.id == 'delete') {
         Interfaz.eliminarTask(element);
     }
-}
+}*/

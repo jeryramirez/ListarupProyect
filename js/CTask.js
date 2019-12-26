@@ -1,24 +1,28 @@
 import { CTaskLS } from "./CTaskLS.js";
+import { CInterfaz } from "./CInterfaz.js";
 
 export class CTask {
-    constructor(title, message, level) {
+    constructor(title, message, priority) {
         this.title = title;
         this.message = message;
-        this.level = level;
+        this.priority = priority;
         this.task = {
             "title": this.title,
             "message": this.message,
-            "level": this.level
+            "priority": this.priority
         }
     }
 
-    TaskLS = new CTaskLS(this.task);
-
     put() {
-        this.TaskLS.put();
+        const TaskLS = new CTaskLS(this.task);
+        const Interfaz = new CInterfaz();
+
+        TaskLS.put();
+        Interfaz.show();
     }
 
     get() {
-        this.TaskLS.get();
+        const TaskLS = new CTaskLS();
+        return TaskLS.get();
     }
 }
